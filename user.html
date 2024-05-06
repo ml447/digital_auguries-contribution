@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register your account here</title>
+<script>
+function saveDataToFile() {
+    // Get form data
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var email = document.getElementById("email").value;
+
+    // Prepare data string
+    var data = "Username: " + username + "\n" +
+               "Password: " + password + "\n" +
+               "Email: " + email + "\n";
+
+    // Create a new Blob object containing the data
+    var blob = new Blob([data], { type: "text/plain" });
+
+    // Create a new link element
+    var a = document.createElement("a");
+
+    // Set the href attribute of the link to point to the Blob
+    a.href = window.URL.createObjectURL(blob);
+
+    // Set the filename of the downloaded file
+    a.download = "formData.txt";
+
+    // Append the link to the body
+    document.body.appendChild(a);
+
+    // Click the link to trigger the download
+    a.click();
+
+    // Remove the link from the body
+    document.body.removeChild(a);
+}
+</script>
+</head>
+<body>
+<h2>Form Data to Text File</h2>
+<form>
+    <label for="username">Please enter your Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Please enter your Password:</label><br>
+    <input type="text" id="password" name="password"><br>
+    <label for="email"> Please enter your Email:</label><br>
+    <input type="email" id="email" name="email"><br><br>
+    <button type="button" onclick="saveDataToFile()">Submit</button>
+</form>
+</body>
+</html>
